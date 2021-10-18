@@ -15,8 +15,8 @@
 
 ```c
 typedef struct {
-  int *array;
-  int size;
+    int *array;
+    int size;
 } Array;
 ```
 
@@ -30,10 +30,10 @@ You have no control over whether it is a local variable or not. And it can be mi
 
 ```c
 Array array_create(int init_size) {
-  Array a;
-  a.array = (int*)malloc(sizeof(int)*init_size);
-  a.size = init_size;
-  return a;
+    Array a;
+    a.array = (int*)malloc(sizeof(int)*init_size);
+    a.size = init_size;
+    return a;
 }
 ```
 
@@ -47,8 +47,8 @@ If `a == NULL` ? Or `a` already existes.
 
 ```c
 void array_free(Array *a) {
-  free(a->array);
-  a->size = 0;
+    free(a->array);
+    a->size = 0;
 }
 ```
 
@@ -60,7 +60,7 @@ void array_free(Array *a) {
 
 ```c
 int array_size(const Array *a) {
-  return a->size;
+    return a->size;
 }
 ```
 
@@ -74,10 +74,10 @@ In the way it's done here, it's called encapsulation(封装).
 
 ```c
 int* array_at(Array *a, int index) {
-  if (index >= a->size) {
-    array_inflate(a, index-a->size);
-  }
-  return &(a->array[index]);
+    if (index >= a->size) {
+        array_inflate(a, index-a->size);
+    }
+    return &(a->array[index]);
 }
 ```
 
@@ -104,9 +104,9 @@ Why `int*` not int?
 
   ```c
   int* array_at(Array *a, int index) {
-    if (index >= a->size) {
-      array_inflate(a, (index/BLOCK_SIZE + 1)*BLOCK_SIZE-a -> size);
-    }
+      if (index >= a->size) {
+          array_inflate(a, (index/BLOCK_SIZE + 1)*BLOCK_SIZE-a -> size);
+      }
   }
   return &(a->array[index]);
   ```
@@ -117,11 +117,11 @@ Why `int*` not int?
 
 ```c
 void array_inflate(Array *a, int more_size) {
-  int* p = (int*)malloc(sizeof(int)*(a->size+more_size));
-  for (int i=0; i<a->size; i++) p[i] = a->array[i];
-  free(a->array);
-  a->array = p;
-  a->size = s->size+more_size;
+    int* p = (int*)malloc(sizeof(int)*(a->size+more_size));
+    for (int i=0; i<a->size; i++) p[i] = a->array[i];
+    free(a->array);
+    a->array = p;
+    a->size = s->size+more_size;
 }
 ```
 
@@ -129,11 +129,11 @@ void array_inflate(Array *a, int more_size) {
 
 ```c
 void array_inflate(Array *a, int more_size) {
-  int* p = (int*)malloc(sizeof(int)*(a->size+more_size));
-  memocpy((void*)p, (void*)a->array, a->size*sizeof(int));
-  free(a->array);
-  a->array = p;
-  a->size = s->size+more_size;
+    int* p = (int*)malloc(sizeof(int)*(a->size+more_size));
+    memocpy((void*)p, (void*)a->array, a->size*sizeof(int));
+    free(a->array);
+    a->array = p;
+    a->size = s->size+more_size;
 }
 ```
 
@@ -141,7 +141,7 @@ void array_inflate(Array *a, int more_size) {
 
   ```c
   int* array_get(Array* a) {
-    return a->array;
+      return a->array;
   }
   ```
 
