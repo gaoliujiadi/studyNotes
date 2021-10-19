@@ -16,13 +16,13 @@ typedef struct _node {
 
 basic operation
 
-- [insert head](#insert head)
+- [insert head](#insertHead)
 - [function](#function)
 - [traversal](#traversal)/[search](#search)
 - [remove](#remove)
-- [clear all](#clear all)
+- [clear all](#clearAll)
 
-- [append tail](#append tail)
+- [append tail](#appendTail)
 
 ## Construct
 
@@ -42,7 +42,7 @@ int main(int argc, char const *argv[]) {
 
 
 
-### insert head
+### insertHead
 
 1. Create a new node
 
@@ -361,7 +361,7 @@ for (q=NULL, p=list.head; p; q=p, p=p->next) {
 }
 ```
 
-### clear all
+### clearAll
 
 There comes a time when clear the whole linked-list
 
@@ -385,7 +385,7 @@ void clear(Node *head) {
 
 I don't fucking get it.
 
-### append tail
+### appendTail
 
 - find the tail
 - `tail->next = n;`
